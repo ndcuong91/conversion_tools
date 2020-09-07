@@ -4,11 +4,20 @@ import glob, os
 from PIL import Image
 from tqdm import tqdm
 
-def txtToXml(img_dir, icdar_anno_dir, output_voc_dir):
+def txtToXml(list_files, img_dir, icdar_anno_dir, output_voc_dir):
     for txt_file in tqdm(glob.glob(icdar_anno_dir + '/*.txt')):
         base_name = os.path.basename(txt_file).split('.')[0]
         print(base_name)
-        im = Image.open(os.path.join(img_dir, base_name + '.jpg'))
+        if len(list_files)>0:
+            if base_name not in list_files:
+                print('not in list_files',base_name)
+                continue
+        print('convert',base_name)
+        img_path=os.path.join(img_dir, base_name + '.jpg')
+        if not os.path.exists(img_path):
+            img_path=os.path.join(img_dir, base_name + '.png')
+
+        im = Image.open(img_path)
         width = im.size[0]
         height = im.size[1]
         tree = open(txt_file, 'r', encoding='UTF-8')
@@ -63,7 +72,8 @@ def txtToXml(img_dir, icdar_anno_dir, output_voc_dir):
 #def pascalVOC2icdar()
 
 if __name__ == "__main__":
-    img_dir = 'icdar2json/images'
-    icdar_anno_dir = r'E:\docs\vietnamese_eval_set\predict_2stages_word'
-    output_voc_dir = 'icdar2json/labels'
-    txtToXml(img_dir, icdar_anno_dir, output_voc_dir)
+    img_dir = '/data20.04/data/aicr/korea_test_set/korea_English_test/images'
+    icdar_anno_dir = '/home/cuongnd/PycharmProjects/aicr/aicr.core/aicr_core/outputs/predict_pytorch/korea_English_test_2020-08-26_22-37_0.9432_0.4675/pred_icdar'
+    output_voc_dir = '/home/cuongnd/PycharmProjects/aicr/aicr.core/aicr_core/outputs/predict_pytorch/korea_English_test_2020-08-26_22-37_0.9432_0.4675/pred_voc'
+    list_files=[]
+    txtToXml(list_files, img_dir, icdar_anno_dir, output_voc_dir)

@@ -48,7 +48,7 @@ def voc2icdar(voc_dir):
                 f.write(gt_txt)
 
 if __name__ == '__main__':
-    voc_dir=r'E:\docs\vietnamese_eval_set\anno_word_voc'
+    voc_dir=r'/data20.04/data/aicr/korea_test_set/korea_English_test'
     if voc_dir=='':
         voc_dir = sys.argv[1]
     voc2icdar(voc_dir)

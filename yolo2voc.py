@@ -8,8 +8,8 @@ try:
 except ImportError:
     from PyQt4.QtGui import QImage
 
-imgFolderPath = '/home/duycuong/PycharmProjects/research_py3/text_recognition/datasets/detector/invoices_7May/layout_yolo_26May/val'
-imgOutputPath = '/home/duycuong/PycharmProjects/research_py3/text_recognition/datasets/detector/invoices_7May/layout_voc_26May/val'
+imgFolderPath = '/data20.04/data/aicr/korea_test_set/cello_gt'
+imgOutputPath = '/data20.04/data/aicr/korea_test_set/cello_gt'
 
 # Search all yolo annotation (txt files) in this folder
 for file in os.listdir(imgFolderPath):
