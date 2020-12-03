@@ -72,8 +72,8 @@ def txtToXml(list_files, img_dir, icdar_anno_dir, output_voc_dir):
 #def pascalVOC2icdar()
 
 if __name__ == "__main__":
-    img_dir = '/data20.04/data/aicr/korea_test_set/korea_English_test/images'
-    icdar_anno_dir = '/home/cuongnd/PycharmProjects/aicr/aicr.core/aicr_core/outputs/predict_pytorch/korea_English_test_2020-08-26_22-37_0.9432_0.4675/pred_icdar'
-    output_voc_dir = '/home/cuongnd/PycharmProjects/aicr/aicr.core/aicr_core/outputs/predict_pytorch/korea_English_test_2020-08-26_22-37_0.9432_0.4675/pred_voc'
+    img_dir = '/data20.04/data/table recognition/from_Korea/201012_172754_pubtabnet_valid_sample_objective#2/images'
+    icdar_anno_dir = '/data20.04/data/table recognition/27_10_2020_11_56_16'
+    output_voc_dir = '/data20.04/data/table recognition/27_10_2020_11_56_16_xml'
     list_files=[]
     txtToXml(list_files, img_dir, icdar_anno_dir, output_voc_dir)

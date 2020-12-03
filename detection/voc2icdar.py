@@ -41,14 +41,14 @@ def voc2icdar(voc_dir):
                 ymin = str(shapes[i][1][0][1])
                 xmax = str(shapes[i][1][2][0])
                 ymax = str(shapes[i][1][2][1])
-                line=','.join([xmin,ymin,xmax,ymin,xmax,ymax,xmin,ymax,label])
+                line=','.join([xmin,ymin,xmax,ymin,xmax,ymax,xmin,ymax,'cell'])
                 gt_txt+=line+'\n'
 
             with open(voc_dir + "/" + annotation_no_xml + ".txt", 'w',encoding='utf8') as f:
                 f.write(gt_txt)
 
 if __name__ == '__main__':
-    voc_dir=r'/data20.04/data/aicr/korea_test_set/korea_English_test'
+    voc_dir=r'/data20.04/data/table recognition/from_Korea/201016_132333_obj1_perf_testset/gt_refined_16Oct'
     if voc_dir=='':
         voc_dir = sys.argv[1]
     voc2icdar(voc_dir)

@@ -5,7 +5,6 @@ def pt_labels_to_string(pt_lbl):
     result_str = ""
     for pt,lbl in pt_lbl:
         points = ""
-
         for point in pt:
             points += "{},{},".format(
                 int(float(point[0])),
@@ -23,5 +22,4 @@ def read_json(path):
             point = shape["points"]
             label = shape["label"]
             pt_labels.append((point,label))
-    return pt_labels        
-
+    return pt_labels
