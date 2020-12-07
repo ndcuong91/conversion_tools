@@ -77,3 +77,10 @@ categories[{
 ```
 
 ## II. Segmentation
+
+| |  **COCO to** |  **normal to** |  **PascalVOC to** |   **labelme to**|
+| -------------------- | --------- | -------- | -------- | ------- |
+| **COCO**   | x   | -    | -  | o        |
+| **normal**    |  | x | o |  |
+| **PascalVOC**    |  |  | x | o |
+| **labelme**    | o |  |  | x |
