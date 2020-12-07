@@ -1,0 +1,1 @@
+If there are totally 4 classes (eg. background, text, table, figure), the value of each pixel is 0,1,2,3, respectively
