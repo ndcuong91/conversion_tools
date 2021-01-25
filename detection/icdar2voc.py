@@ -4,18 +4,18 @@ import glob, os
 from PIL import Image
 from tqdm import tqdm
 
-def txtToXml(list_files, img_dir, icdar_anno_dir, output_voc_dir):
+def txtToXml(list_files, img_dir, icdar_anno_dir, output_voc_dir, ext=['jpg','JPG','PNG','png']):
     for txt_file in tqdm(glob.glob(icdar_anno_dir + '/*.txt')):
-        base_name = os.path.basename(txt_file).split('.')[0]
+        base_name = os.path.basename(txt_file).replace('.txt','')
         print(base_name)
         if len(list_files)>0:
             if base_name not in list_files:
                 print('not in list_files',base_name)
                 continue
         print('convert',base_name)
-        img_path=os.path.join(img_dir, base_name + '.jpg')
+        img_path=os.path.join(img_dir, base_name + '.JPG')
         if not os.path.exists(img_path):
-            img_path=os.path.join(img_dir, base_name + '.png')
+            img_path=os.path.join(img_dir, base_name + '.jpg')
 
         im = Image.open(img_path)
         width = im.size[0]
@@ -72,8 +72,8 @@ def txtToXml(list_files, img_dir, icdar_anno_dir, output_voc_dir):
 #def pascalVOC2icdar()
 
 if __name__ == "__main__":
-    img_dir = '/home/cuongnd/PycharmProjects/aicr/aicr.core2/data_processing/data_generator_ss/outputs/corpus_10_2020-12-09_09-27/images'
-    icdar_anno_dir = '/home/cuongnd/PycharmProjects/aicr/aicr.core2/data_processing/data_generator_ss/outputs/corpus_10_2020-12-09_09-27/annots'
-    output_voc_dir = '/home/cuongnd/PycharmProjects/aicr/aicr.core2/data_processing/data_generator_ss/outputs/corpus_10_2020-12-09_09-27/XML'
+    img_dir = '/data20.04/data/data_Korea/WER_20210122/jpg'
+    icdar_anno_dir = '/data20.04/data/data_Korea/WER_20210122/anno/icdar'
+    output_voc_dir = '/data20.04/data/data_Korea/WER_20210122/anno/voc'
     list_files=[]
     txtToXml(list_files, img_dir, icdar_anno_dir, output_voc_dir)

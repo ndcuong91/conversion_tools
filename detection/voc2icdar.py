@@ -10,7 +10,7 @@ except ImportError:
     from PyQt4.QtGui import QImage
 
 # Search all pascal annotation (xml files) in this folder
-def voc2icdar(voc_dir):
+def voc2icdar(voc_dir, icdar_dir):
     for file in os.listdir(voc_dir):
         if file.endswith(".xml"):
             print(file)
@@ -41,14 +41,16 @@ def voc2icdar(voc_dir):
                 ymin = str(shapes[i][1][0][1])
                 xmax = str(shapes[i][1][2][0])
                 ymax = str(shapes[i][1][2][1])
-                line=','.join([xmin,ymin,xmax,ymin,xmax,ymax,xmin,ymax,'cell'])
+                line=','.join([xmin,ymin,xmax,ymin,xmax,ymax,xmin,ymax,label])
                 gt_txt+=line+'\n'
-
-            with open(voc_dir + "/" + annotation_no_xml + ".txt", 'w',encoding='utf8') as f:
+            gt_txt=gt_txt.rstrip('\n')
+            save_file_path=icdar_dir + "/" + annotation_no_xml + ".txt"
+            with open(save_file_path, 'w',encoding='utf8') as f:
                 f.write(gt_txt)
 
 if __name__ == '__main__':
-    voc_dir=r'/data20.04/data/table recognition/from_Korea/201016_132333_obj1_perf_testset/gt_refined_16Oct'
+    voc_dir=r'/home/cuongnd/PycharmProjects/aicr/viText/viText/viData/viReceipts/anno_voc'
+    icdar_dir=r'/home/cuongnd/PycharmProjects/aicr/viText/viText/viData/viReceipts/anno_icdar'
     if voc_dir=='':
         voc_dir = sys.argv[1]
-    voc2icdar(voc_dir)
+    voc2icdar(voc_dir, icdar_dir)
