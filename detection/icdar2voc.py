@@ -69,7 +69,11 @@ def txtToXml(list_files, img_dir, icdar_anno_dir, output_voc_dir, ext=['jpg','JP
         with open(os.path.join(output_voc_dir, base_name + '.xml'), 'w', encoding="utf-8") as f:
             dom.writexml(f, indent='\t', addindent='\t', encoding="utf-8")
 
+
+
+
 #def pascalVOC2icdar()
+
 
 if __name__ == "__main__":
     img_dir = '/data20.04/data/data_Korea/WER_20210122/jpg'
@@ -77,3 +81,5 @@ if __name__ == "__main__":
     output_voc_dir = '/data20.04/data/data_Korea/WER_20210122/anno/voc'
     list_files=[]
     txtToXml(list_files, img_dir, icdar_anno_dir, output_voc_dir)
+
+    json

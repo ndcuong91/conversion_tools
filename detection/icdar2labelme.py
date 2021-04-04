@@ -1,0 +1,83 @@
+import glob, os
+from PIL import Image
+from tqdm import tqdm
+import json
+import base64
+
+
+def txt2labelme(img_dir, icdar_anno_dir, output_labelme_dir, ext=['jpg', 'JPG', 'PNG', 'png'], default_class ='text'):
+    for txt_file in tqdm(glob.glob(icdar_anno_dir + '/*.txt')):
+        base_name = os.path.basename(txt_file).replace('.txt', '')
+        print('txt2labelme. Convert', base_name)
+        for ex in ext:
+            if os.path.exists(os.path.join(img_dir, base_name + '.' + ex)):
+                img_path = os.path.join(img_dir, base_name + '.' + ex)
+                break
+        im = Image.open(img_path)
+
+        with open(img_path, mode='rb') as file:
+            img_data = base64.encodebytes(file.read()).decode("utf-8")
+
+
+        tree = open(txt_file, 'r', encoding='UTF-8')
+        root = tree.readlines()
+        bboxes =[]
+        for i, line in enumerate(root):
+            line_str = line.split('\t')[0].replace('\n', '')
+            # separate coordinate with value
+            idx = -1
+            for i in range(0, 8):
+                idx = line_str.find(',', idx + 1)
+
+            coordinates = line_str[:idx]
+            val = line_str[idx + 1:]
+            if default_class is not None:
+                val = default_class
+            locs= [float(f) for f in coordinates.split(",")]
+
+            bbox= {'label':val,
+                   'points':[[locs[0],locs[1]],[locs[2],locs[3]],[locs[4],locs[5]],[locs[6],locs[7]]],
+                   'group_id':None,
+                   'shape_type':'polygon',
+                   'flags':{}}
+            bboxes.append(bbox)
+
+        json_dict = {'version': '4.4.0',
+                     'flags': {},
+                     'shapes': bboxes,
+                     'imagePath': os.path.basename(img_path),
+                     'imageData': img_data,
+                     'imageHeight': im.size[1],
+                     'imageWidth': im.size[0]}
+
+        with open(os.path.join(output_labelme_dir,base_name+'.json'), 'w') as outfile:
+            json.dump(json_dict, outfile)
+
+# def read_json(path):
+#     json_dict = {'version': '4.4.0',
+#                  'flag': {},
+#                  'shapes': [],
+#                  'imagePath': '',
+#                  'imageData': '',
+#                  'imageHeight': '',
+#                  'imageWidth': ''}
+#
+#     pt_labels = []
+#     with open(path) as json_file:
+#         data = json.load(json_file)
+#         shapes = data["shapes"]
+#         for shape in shapes:
+#             point = shape["points"]
+#             label = shape["label"]
+#             pt_labels.append((point, label))
+#     return pt_labels
+
+
+if __name__ == "__main__":
+    img_dir = '/home/duycuong/PycharmProjects/vvn/demo_read_document/uploads/'
+    icdar_anno_dir = '/home/duycuong/PycharmProjects/vvn/demo_read_document/uploads/'
+    output_labelme_dir = '/home/duycuong/PycharmProjects/vvn/demo_read_document/uploads/'
+
+    txt2labelme(img_dir=img_dir,
+                icdar_anno_dir=icdar_anno_dir,
+                output_labelme_dir=output_labelme_dir)
