@@ -53,30 +53,11 @@ def txt2labelme(img_dir, icdar_anno_dir, output_labelme_dir, ext=['jpg', 'JPG', 
         with open(os.path.join(output_labelme_dir,base_name+'.json'), 'w') as outfile:
             json.dump(json_dict, outfile)
 
-# def read_json(path):
-#     json_dict = {'version': '4.4.0',
-#                  'flag': {},
-#                  'shapes': [],
-#                  'imagePath': '',
-#                  'imageData': '',
-#                  'imageHeight': '',
-#                  'imageWidth': ''}
-#
-#     pt_labels = []
-#     with open(path) as json_file:
-#         data = json.load(json_file)
-#         shapes = data["shapes"]
-#         for shape in shapes:
-#             point = shape["points"]
-#             label = shape["label"]
-#             pt_labels.append((point, label))
-#     return pt_labels
-
 
 if __name__ == "__main__":
-    img_dir = '/home/duycuong/PycharmProjects/vvn/demo_read_document/uploads/'
-    icdar_anno_dir = '/home/duycuong/PycharmProjects/vvn/demo_read_document/uploads/'
-    output_labelme_dir = '/home/duycuong/PycharmProjects/vvn/demo_read_document/uploads/'
+    img_dir = '/home/duycuong/PycharmProjects/vvn/demo_read_document/uploads/all_salecontracts/'
+    icdar_anno_dir = '/home/duycuong/PycharmProjects/vvn/demo_read_document/uploads/all_salecontracts'
+    output_labelme_dir = '/home/duycuong/PycharmProjects/vvn/demo_read_document/uploads/all_salecontracts'
 
     txt2labelme(img_dir=img_dir,
                 icdar_anno_dir=icdar_anno_dir,
