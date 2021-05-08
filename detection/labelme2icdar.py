@@ -21,14 +21,14 @@ def labelme2txt(img_dir, labelme_anno_dir, output_icdar_dir, ext=['jpg', 'JPG', 
             for shape in shapes:
                 point = shape["points"]
                 label = shape["label"]
-                line = ','.join([str(point[0][0]),
-                                 str(point[0][1]),
-                                 str(point[1][0]),
-                                 str(point[1][1]),
-                                 str(point[2][0]),
-                                 str(point[2][1]),
-                                 str(point[3][0]),
-                                 str(point[3][1]),
+                line = ','.join([str(round(point[0][0])),
+                                 str(round(point[0][1])),
+                                 str(round(point[1][0])),
+                                 str(round(point[1][1])),
+                                 str(round(point[2][0])),
+                                 str(round(point[2][1])),
+                                 str(round(point[3][0])),
+                                 str(round(point[3][1])),
                                  label])
                 icdar_txt += line + '\n'
 
@@ -37,9 +37,9 @@ def labelme2txt(img_dir, labelme_anno_dir, output_icdar_dir, ext=['jpg', 'JPG', 
 
 
 if __name__ == "__main__":
-    img_dir = '/media/duycuong/Data/ocr_data/detector/invoices_SDV/textline_icdar_9May/test_images'
-    labelme_anno_dir = '/media/duycuong/Data/ocr_data/detector/invoices_SDV/textline_icdar_9May/test_gts_labelme'
-    output_icdar_dir = '/media/duycuong/Data/ocr_data/detector/invoices_SDV/textline_icdar_9May/test_gt2'
+    img_dir = '/home/duycuong/PycharmProjects/vvn/demo_read_document/demo_app/data/sale_contract/json'
+    labelme_anno_dir = '/home/duycuong/PycharmProjects/vvn/demo_read_document/demo_app/data/sale_contract/json'
+    output_icdar_dir = '/home/duycuong/PycharmProjects/vvn/demo_read_document/demo_app/data/sale_contract/icdar_entity'
 
     labelme2txt(img_dir=img_dir,
                 labelme_anno_dir=labelme_anno_dir,

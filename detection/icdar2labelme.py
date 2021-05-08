@@ -55,10 +55,11 @@ def txt2labelme(img_dir, icdar_anno_dir, output_labelme_dir, ext=['jpg', 'JPG', 
 
 
 if __name__ == "__main__":
-    img_dir = '/home/duycuong/PycharmProjects/vvn/demo_read_document/uploads/all_salecontracts/'
-    icdar_anno_dir = '/home/duycuong/PycharmProjects/vvn/demo_read_document/uploads/all_salecontracts'
-    output_labelme_dir = '/home/duycuong/PycharmProjects/vvn/demo_read_document/uploads/all_salecontracts'
+    img_dir = '/home/duycuong/home_data/vvn/Sale_Contract_viettel/trans_img1'
+    icdar_anno_dir = '/home/duycuong/home_data/vvn/Sale_Contract_viettel/icdar_entity1'
+    output_labelme_dir = '/home/duycuong/home_data/vvn/Sale_Contract_viettel/json_entity1'
 
     txt2labelme(img_dir=img_dir,
                 icdar_anno_dir=icdar_anno_dir,
-                output_labelme_dir=output_labelme_dir)
+                output_labelme_dir=output_labelme_dir,
+                default_class=None)
