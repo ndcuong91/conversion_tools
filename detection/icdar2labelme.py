@@ -5,7 +5,7 @@ import json
 import base64
 
 
-def txt2labelme(img_dir, icdar_anno_dir, output_labelme_dir, ext=['jpg', 'JPG', 'PNG', 'png'], default_class ='text'):
+def txt2labelme(img_dir, icdar_anno_dir, output_labelme_dir, ext=['jpg', 'JPG', 'PNG', 'png'], default_class ='other'):
     for txt_file in tqdm(glob.glob(icdar_anno_dir + '/*.txt')):
         base_name = os.path.basename(txt_file).replace('.txt', '')
         print('txt2labelme. Convert', base_name)
@@ -55,9 +55,9 @@ def txt2labelme(img_dir, icdar_anno_dir, output_labelme_dir, ext=['jpg', 'JPG', 
 
 
 if __name__ == "__main__":
-    img_dir = '/home/duycuong/PycharmProjects/vvn/demo_read_document/uploads/all_salecontracts/'
-    icdar_anno_dir = '/home/duycuong/PycharmProjects/vvn/demo_read_document/uploads/all_salecontracts'
-    output_labelme_dir = '/home/duycuong/PycharmProjects/vvn/demo_read_document/uploads/all_salecontracts'
+    img_dir = '/data_backup/cuongnd/Viettel_freeform/sale_contract/crawl_data_internet/imgs'
+    icdar_anno_dir = '/data_backup/cuongnd/Viettel_freeform/sale_contract/crawl_data_internet/icdar'
+    output_labelme_dir = '/data_backup/cuongnd/Viettel_freeform/sale_contract/crawl_data_internet/json_entity'
 
     txt2labelme(img_dir=img_dir,
                 icdar_anno_dir=icdar_anno_dir,

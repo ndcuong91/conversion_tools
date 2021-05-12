@@ -37,9 +37,9 @@ def labelme2txt(img_dir, labelme_anno_dir, output_icdar_dir, ext=['jpg', 'JPG', 
 
 
 if __name__ == "__main__":
-    img_dir = '/media/duycuong/Data/ocr_data/detector/invoices_SDV/textline_icdar_9May/test_images'
-    labelme_anno_dir = '/media/duycuong/Data/ocr_data/detector/invoices_SDV/textline_icdar_9May/test_gts_labelme'
-    output_icdar_dir = '/media/duycuong/Data/ocr_data/detector/invoices_SDV/textline_icdar_9May/test_gt2'
+    img_dir = '/data_backup/cuongnd/Viettel_freeform/sale_contract/crawl_data_internet/imgs'
+    labelme_anno_dir = '/data_backup/cuongnd/Viettel_freeform/sale_contract/crawl_data_internet/json_entity'
+    output_icdar_dir = '/data_backup/cuongnd/Viettel_freeform/sale_contract/crawl_data_internet/icdar_entity'
 
     labelme2txt(img_dir=img_dir,
                 labelme_anno_dir=labelme_anno_dir,
