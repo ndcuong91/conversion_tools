@@ -21,14 +21,14 @@ def labelme2txt(img_dir, labelme_anno_dir, output_icdar_dir, ext=['jpg', 'JPG', 
             for shape in shapes:
                 point = shape["points"]
                 label = shape["label"]
-                line = ','.join([str(point[0][0]),
-                                 str(point[0][1]),
-                                 str(point[1][0]),
-                                 str(point[1][1]),
-                                 str(point[2][0]),
-                                 str(point[2][1]),
-                                 str(point[3][0]),
-                                 str(point[3][1]),
+                line = ','.join([str(round(point[0][0])),
+                                 str(round(point[0][1])),
+                                 str(round(point[1][0])),
+                                 str(round(point[1][1])),
+                                 str(round(point[2][0])),
+                                 str(round(point[2][1])),
+                                 str(round(point[3][0])),
+                                 str(round(point[3][1])),
                                  label])
                 icdar_txt += line + '\n'
 

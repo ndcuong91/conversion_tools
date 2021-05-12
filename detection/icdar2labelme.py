@@ -61,4 +61,5 @@ if __name__ == "__main__":
 
     txt2labelme(img_dir=img_dir,
                 icdar_anno_dir=icdar_anno_dir,
-                output_labelme_dir=output_labelme_dir)
+                output_labelme_dir=output_labelme_dir,
+                default_class=None)
